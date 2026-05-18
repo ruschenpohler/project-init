@@ -1,0 +1,37 @@
+# agents and implementation logs
+AGENTS.md
+agents.md
+impl-log.jsonl
+impl-log.md
+impl-plan_*.md
+impl-plan.md
+
+# generated artefacts
+*.parquet
+*.jsonl
+*.csv
+*.png
+*.xlsx
+__pycache__/
+*.pyc
+
+# data and output
+data/
+output/
+
+# environment
+.venv/
+.uvcache/
+
+# secrets
+.env
+credentials.json
+
+# notebooks
+.ipynb_checkpoints/
+notebooks/
+
+# spark
+metastore_db/
+derby.log
+spark-warehouse/
