@@ -59,7 +59,16 @@ def run(args):
     )
     subprocess.run(["git", "-C", str(project_root), "add", "-A"], check=True)
     subprocess.run(
-        ["git", "-C", str(project_root), "commit", "-m", commit_msg], check=True
+        [
+            "git",
+            "-C",
+            str(project_root),
+            "commit",
+            "--no-verify",
+            "-m",
+            commit_msg,
+        ],
+        check=True,
     )
     print(f"\nDone. Project scaffolded at: {project_root}")
     print(f"Modules installed: {', '.join(installed_modules)}")

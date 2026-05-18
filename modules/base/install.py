@@ -38,7 +38,7 @@ def install(project_root: Path, project_name: str):
 
     for d in ["output", "data"]:
         p = project_root / d
-        p.mkdir()
+        p.mkdir(exist_ok=True)
         (p / ".gitkeep").touch()
 
     (project_root / "impl-log.jsonl").touch()

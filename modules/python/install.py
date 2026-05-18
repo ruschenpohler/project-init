@@ -12,10 +12,10 @@ def install(project_root: Path, project_name: str):
     (project_root / ".python-version").write_text("3.11\n")
 
     src_pkg = project_root / "src" / project_name.replace("-", "_")
-    src_pkg.mkdir(parents=True)
+    src_pkg.mkdir(parents=True, exist_ok=True)
     (src_pkg / "__init__.py").touch()
     tests_dir = project_root / "tests"
-    tests_dir.mkdir()
+    tests_dir.mkdir(exist_ok=True)
     (tests_dir / "__init__.py").touch()
     (tests_dir / "conftest.py").write_text(CONFTEST_CONTENT)
 
@@ -33,8 +33,9 @@ def install(project_root: Path, project_name: str):
 
 
 CONFTEST_CONTENT = """\
-import pytest
 import random
+
+import pytest
 
 
 @pytest.fixture
