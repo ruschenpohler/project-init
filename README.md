@@ -1,8 +1,6 @@
-# project-init
+# project-init: A CLI Scaffolding Tool to Initializes Project Environments
 
-A CLI scaffolding tool that initializes new projects with a complete, opinionated environment: version control, dependency management, code quality tooling, agent behavioral protocols, and optional domain modules. Designed for use by humans and AI agents alike.
-
-Every project produced by `project-init` is git-backed from its first file, has pre-commit hooks enforcing quality gates, carries an `agents.md` behavioral protocol, and builds a `reference.md` from the modules installed. No manual setup. No configuration drift between projects.
+A CLI scaffolding tool that initializes new projects with a complete, opinionated environment: version control, dependency management, code quality tooling, agent behavioral protocols, and optional domain modules. Designed for use by humans and agentic collaborators. Every project produced by `project-init` is git-backed from the start, has pre-commit hooks enforcing quality gates, carries an `agents.md` behavioral protocol, and builds a `reference.md` from the modules installed. Automating the basic setup of a new projects effectively sidesteps forgetting and configuration drift between projects.
 
 ---
 
