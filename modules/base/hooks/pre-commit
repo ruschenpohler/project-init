@@ -1,0 +1,21 @@
+#!/bin/bash
+# Dispatcher: owned by base, never overwritten by modules.
+# Modules add checks by dropping scripts into .git/hooks/pre-commit.d/
+# Naming convention: NN-description.sh (lower NN = runs earlier)
+
+HOOK_DIR="$(git rev-parse --git-dir)/hooks/pre-commit.d"
+
+if [ ! -d "$HOOK_DIR" ]; then
+    exit 0
+fi
+
+for hook in "$HOOK_DIR"/*.sh; do
+    [ -f "$hook" ] || continue
+    bash "$hook"
+    if [ $? -ne 0 ]; then
+        echo "pre-commit hook failed: $hook"
+        exit 1
+    fi
+done
+
+exit 0
