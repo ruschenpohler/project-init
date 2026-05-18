@@ -1,6 +1,9 @@
 import sys
+from pathlib import Path
 
 from project_init.runner import run_module
+
+MODULES_DIR = Path(__file__).resolve().parent.parent / "modules"
 
 
 def test_base_creates_git_repo(tmp_project):
@@ -21,12 +24,17 @@ def test_base_creates_precommit_d(tmp_project):
     assert (tmp_project / ".git" / "hooks" / "pre-commit.d").is_dir()
 
 
-def test_base_creates_agents_symlink_or_copy(tmp_project):
+def test_base_creates_agents_symlink_or_copy(tmp_project, capsys):
     run_module("base", tmp_project, "test-project")
     agents = tmp_project / "agents.md"
     assert agents.exists()
-    content = agents.read_text()
-    assert "pre-commit.d contract" in content
+    tmpl = MODULES_DIR / "base" / "agents.md.tmpl"
+    assert agents.read_text() == tmpl.read_text()
+    if sys.platform == "win32":
+        assert not agents.is_symlink()
+        assert "Could not create symlink" in capsys.readouterr().out
+    else:
+        assert agents.is_symlink()
 
 
 def test_base_creates_reference(tmp_project):
