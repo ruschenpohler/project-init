@@ -1,6 +1,5 @@
 import subprocess
 import sys
-from pathlib import Path
 
 
 def test_cli_base_only(tmp_path):

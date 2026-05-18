@@ -1,4 +1,5 @@
-from pathlib import Path
+import sys
+
 from project_init.runner import run_module
 
 
@@ -11,7 +12,8 @@ def test_base_creates_dispatcher(tmp_project):
     run_module("base", tmp_project, "test-project")
     dispatcher = tmp_project / ".git" / "hooks" / "pre-commit"
     assert dispatcher.exists()
-    assert dispatcher.stat().st_mode & 0o111
+    if sys.platform != "win32":
+        assert dispatcher.stat().st_mode & 0o111
 
 
 def test_base_creates_precommit_d(tmp_project):
