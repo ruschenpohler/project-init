@@ -65,17 +65,6 @@ Used for commits and log entries alike.
 | 9/10 | High stakes. Changes experimental protocol or data source. | `feat: switch from truncated panel to bridge-equation fill [9]` |
 | 10/10 | Existential. Could invalidate prior analysis or paper claims. | `feat: replace sklearn GBT with EM-DFM frontier [10]` |
 
-### pre-commit.d contract
-- The dispatcher owns `.git/hooks/pre-commit`. Never overwrite it.
-- To add a pre-commit check, drop a numbered script into `.git/hooks/pre-commit.d/`.
-- Naming: `NN-description.sh` where NN controls execution order. Lower = earlier.
-- Fast/cheap checks get low numbers (01–30). Slow checks get high numbers (70–99).
-
-### Session start protocol
-1. `git status` — verify clean working tree.
-2. `git checkout -b [task-slug]` — never work on main directly.
-3. On completion: commit all work, set `status: handover` in `impl-log.jsonl`, open PR.
-
 ### Gitignore standards
 - Add the following to `.gitignore`. Do not commit them unprompted:
   1. `AGENTS.md`, `impl-log.md`, `impl-plan_*.md`, or any other implementation logging files.
